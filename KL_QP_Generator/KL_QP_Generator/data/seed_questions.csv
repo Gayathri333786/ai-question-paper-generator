@@ -1,0 +1,157 @@
+question,kl
+"Define data science.",K1
+"List the applications of data science.",K1
+"State the Central Limit Theorem.",K1
+"What is a data frame in Pandas?",K1
+"Name the types of sampling methods.",K1
+"Write the syntax of a for loop in Python.",K1
+"Identify the steps in the data science process.",K1
+"Recall the definition of standard deviation.",K1
+"Mention any four data types in Python.",K1
+"What is overfitting?",K1
+"List the types of machine learning.",K1
+"Define null hypothesis.",K1
+"State Bayes' theorem.",K1
+"What is a primary key in a database?",K1
+"Name the layers of the OSI model.",K1
+"Define a stack.",K1
+"List any five Python libraries used for data science.",K1
+"What is meant by missing values?",K1
+"Define probability.",K1
+"Give the full form of SQL.",K1
+"Recall the characteristics of big data.",K1
+"Identify the components of a neural network.",K1
+"Define process in an operating system.",K1
+"State any two properties of a normal distribution.",K1
+"What is supervised learning?",K1
+"List the steps of the k-means algorithm.",K1
+"Define entropy.",K1
+"Mention the advantages of using a binary search tree.",K1
+"Explain the concept of data science and its need.",K2
+"Describe the purpose of setting a research goal in the data science process.",K2
+"Explain exploratory data analysis with its purpose.",K2
+"Differentiate between descriptive and inferential statistics.",K2
+"Describe the purpose of data modeling in the data science process.",K2
+"Explain the relation between probability and statistics.",K2
+"Discuss the concept of handling missing values.",K2
+"Summarize the working of the k-nearest neighbour algorithm.",K2
+"Explain the difference between supervised and unsupervised learning.",K2
+"Illustrate the concept of overfitting with a suitable diagram.",K2
+"Describe the role of the activation function in a neural network.",K2
+"Explain why normalization is required before training a model.",K2
+"Discuss the types of sampling methods.",K2
+"Interpret the meaning of a p-value.",K2
+"Classify the types of data with examples.",K2
+"Explain the working of a decision tree.",K2
+"Describe how a hash table stores data.",K2
+"Differentiate between a process and a thread.",K2
+"Explain the stages of the data science lifecycle.",K2
+"Summarize the importance of data cleaning.",K2
+"Discuss the need for a sampling distribution.",K2
+"Explain the concept of confidence interval.",K2
+"Describe the working of the bubble sort algorithm.",K2
+"Outline the steps in the data preparation phase.",K2
+"Explain the bias-variance tradeoff.",K2
+"Distinguish between a list and a tuple in Python.",K2
+"Describe how gradient descent updates the weights.",K2
+"Explain Type I and Type II errors.",K2
+"Write short notes on data transformation.",K2
+"Calculate the standard error of the mean for the following dataset: 12, 14, 16, 18.",K3
+"Compute the mean and variance of the following sample: 10, 12, 14, 16.",K3
+"Apply min-max normalization to the data 10, 20, 30, 40, 50.",K3
+"Solve for the probability of drawing two aces from a deck of cards without replacement.",K3
+"Perform a data transformation on a simple example using Pandas.",K3
+"Use Python to remove missing values from the given dataset.",K3
+"Apply the k-means algorithm to cluster the points (1,1), (2,1), (4,3), (5,4) into two clusters.",K3
+"Demonstrate how to handle missing values in a given dataset with a suitable example.",K3
+"Write a Python program to find the mean of a list of numbers.",K3
+"Construct a confusion matrix and calculate the accuracy for the given predictions.",K3
+"Compute the z-score for the value 75 given mean 70 and standard deviation 5.",K3
+"Apply Bayes' theorem to find the probability that a patient has the disease given a positive test.",K3
+"Implement binary search in Python for the given sorted list.",K3
+"Use the t-test to check whether the sample mean differs from 50 for the data 48, 52, 55, 47.",K3
+"Calculate the entropy of a dataset with 9 positive and 5 negative examples.",K3
+"Find the frequent itemsets for the given transactions using the Apriori algorithm.",K3
+"Calculate the 95% confidence interval for the mean given n=36, mean=50 and standard deviation=6.",K3
+"Determine the correlation coefficient between X and Y for the given data.",K3
+"Show how a linear regression line is fitted for the given points.",K3
+"Execute the given SQL query and write the output for the table.",K3
+"Calculate the median and mode of the given data.",K3
+"Use matplotlib to plot a histogram for the given data.",K3
+"Apply one-hot encoding to the categorical column in the given table.",K3
+"Simulate the working of a queue using the given sequence of operations.",K3
+"Find the shortest path from A to F in the given graph using Dijkstra's algorithm.",K3
+"Solve the given problem using the Naive Bayes classifier.",K3
+"Compare k-means and hierarchical clustering.",K4
+"Analyze the effect of outliers on the mean and median.",K4
+"Examine the reasons for overfitting in deep neural networks.",K4
+"Distinguish between bagging and boosting by analyzing their working.",K4
+"Analyze why a decision tree tends to overfit.",K4
+"Compare the time complexity of quicksort and mergesort.",K4
+"Analyze the given confusion matrix and identify the possible issues in the model.",K4
+"Analyze the relationship between correlation and causation using the given example.",K4
+"Investigate the impact of feature scaling on the performance of distance-based algorithms.",K4
+"Break down the data science pipeline and identify the bottlenecks.",K4
+"Examine the assumptions of linear regression and identify which are violated in the given residual plot.",K4
+"Compare SQL and NoSQL databases in terms of scalability and consistency.",K4
+"Analyze the given dataset and identify the patterns that indicate seasonality.",K4
+"Contrast supervised and unsupervised learning on the basis of data requirement and application.",K4
+"Examine how class imbalance affects the accuracy metric.",K4
+"Analyze the factors that influence the choice of a sampling method.",K4
+"Compare the performance of two classifiers using precision and recall.",K4
+"Why is accuracy a misleading metric for imbalanced datasets? Analyze with an example.",K4
+"Inspect the given code and find the reason for the error.",K4
+"Determine the root cause of the high variance in the model by analyzing the learning curves.",K4
+"Compare TCP and UDP based on reliability and speed.",K4
+"Analyze the relationship between sample size and standard error.",K4
+"Differentiate between L1 and L2 regularization by analyzing their effect on the weights.",K4
+"Examine the trade-offs between precision and recall.",K4
+"Compare the working of BFS and DFS and analyze their space complexity.",K4
+"Analyze why the sampling distribution of the mean becomes normal as n increases.",K4
+"Distinguish between stack and heap memory by analyzing allocation and deallocation.",K4
+"Evaluate the efficiency of linear search and binary search for large datasets.",K5
+"Justify the use of cross-validation for model selection.",K5
+"Critique the use of accuracy as the only metric to evaluate a classifier.",K5
+"Assess the suitability of linear regression for the given dataset.",K5
+"Judge which clustering algorithm is best for the given data and justify your choice.",K5
+"Evaluate the performance of the model using the given ROC curve.",K5
+"Recommend an appropriate sampling method for the survey and justify your recommendation.",K5
+"Defend the choice of random forest over a single decision tree for the given problem.",K5
+"Evaluate the ethical issues in using facial recognition for attendance.",K5
+"Assess the impact of data leakage on the reliability of a model.",K5
+"Argue for or against the use of deep learning for small datasets.",K5
+"Evaluate the effectiveness of the data cleaning techniques applied to the given dataset.",K5
+"Justify why the median is preferred over the mean for skewed data.",K5
+"Critically examine the fairness of the given hiring model.",K5
+"Appraise the strengths and weaknesses of the Naive Bayes classifier.",K5
+"Decide the best evaluation metric for a cancer detection model and justify your decision.",K5
+"Prioritize the features in the given dataset based on their importance and justify the ranking.",K5
+"Evaluate the claim that more data always improves model accuracy.",K5
+"Assess whether the hypothesis test result is statistically significant at the 5% level and justify.",K5
+"Judge the validity of the conclusions drawn from the given experiment.",K5
+"Select the most appropriate database for a social media application and justify your selection.",K5
+"Evaluate the trade-offs of using a hash table versus a balanced tree.",K5
+"Critique the following experimental design for A/B testing.",K5
+"Design a data science workflow for predicting customer churn.",K6
+"Develop a machine learning model to predict house prices.",K6
+"Propose a new framework for detecting fake news.",K6
+"Formulate a hypothesis and design an experiment to test it.",K6
+"Create a dashboard to visualize the sales data of a retail company.",K6
+"Construct a neural network architecture for classifying handwritten digits.",K6
+"Devise a strategy to handle missing values in a large healthcare dataset.",K6
+"Design a database schema for a library management system.",K6
+"Compose a plan to collect, clean and analyze data for a smart city project.",K6
+"Develop an algorithm to detect anomalies in network traffic.",K6
+"Propose an end-to-end pipeline for sentiment analysis of tweets.",K6
+"Design a recommender system for an online bookstore.",K6
+"Plan a project to predict student performance using academic data.",K6
+"Invent a new feature that can improve the accuracy of the given model.",K6
+"Create a synthetic dataset that can be used to test a fraud detection model.",K6
+"Design an experiment to compare two teaching methods.",K6
+"Formulate a research question for a study on air pollution and propose a methodology.",K6
+"Develop an innovative solution to reduce false positives in spam detection.",K6
+"Design a system that automatically generates question papers from a question bank.",K6
+"Propose a new approach to combine clustering and classification for customer segmentation.",K6
+"Create an ER diagram for a hospital management system.",K6
+"Build a prototype of a chatbot for answering student queries.",K6
+"Design an architecture for a real-time fraud detection system.",K6

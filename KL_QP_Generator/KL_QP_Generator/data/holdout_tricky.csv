@@ -1,0 +1,39 @@
+question,kl
+"Explain how to apply Dijkstra's algorithm to find the shortest path in the given graph.",K3
+"Compare two algorithms and evaluate their efficiency.",K5
+"Explain the working of the Apriori algorithm with a suitable example.",K2
+"Describe how you would apply regularization to reduce overfitting in the given model.",K3
+"Define overfitting and explain how it can be avoided.",K2
+"List any four assumptions of linear regression.",K1
+"Differentiate between mean and median.",K2
+"Differentiate between bagging and boosting and evaluate which is better for noisy data.",K5
+"What is the difference between a list and a tuple?",K2
+"What is the output of the following code?",K3
+"How does the gradient descent algorithm minimize the loss function?",K2
+"How would you handle missing values in the given dataset?",K3
+"Write a Python program to design a simple calculator.",K3
+"Write short notes on exploratory data analysis.",K2
+"Explain the steps involved in the k-means algorithm.",K2
+"Calculate and interpret the correlation coefficient for the given data.",K3
+"Analyze the given data and design a suitable chart to present it.",K6
+"Examine the given dataset and propose a suitable imputation technique.",K6
+"Predict the output of the given SQL query.",K3
+"Estimate the sample size required for a 95% confidence level.",K3
+"Discuss the advantages and limitations of decision trees and conclude which is better.",K5
+"Define precision and recall and compute them for the given confusion matrix.",K3
+"Summarize and critique the findings of the given research paper.",K5
+"Explain the architecture of a convolutional neural network.",K2
+"Illustrate with a diagram the architecture of a convolutional neural network.",K2
+"Outline a plan to build a model that predicts rainfall.",K6
+"How can you improve the performance of the given model? Justify your suggestions.",K5
+"Compare k-means and DBSCAN.",K4
+"Which algorithm is best suited for the given problem? Justify.",K5
+"Name the algorithm used for finding the shortest path.",K1
+"Develop a Python function to compute the standard deviation.",K3
+"Explain the concept of normalization and justify why it is needed before training.",K5
+"State the formula for variance and calculate it for the values 4, 8, 6, 5, 3.",K3
+"Describe the types of data and compare structured and unstructured data.",K4
+"Identify the type of sampling used in the given scenario and justify.",K5
+"Why is feature scaling required?",K2
+"Data cleaning and its need.",K2
+"Applications of data science.",K1
