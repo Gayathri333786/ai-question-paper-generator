@@ -1,0 +1,115 @@
+{
+  "paper_type": "CAT",
+  "header": {
+    "college": "VELALAR COLLEGE OF ENGINEERING AND TECHNOLOGY",
+    "affiliation": "(An Autonomous Institution, Affiliated to Anna University, Chennai)",
+    "exam_title": "Continuous Assessment Test - I",
+    "qp_set": "I",
+    "regulations": "2022",
+    "programme": "B.Tech - AI&DS",
+    "semester": "3",
+    "max_marks": "60",
+    "duration": "2 Hrs",
+    "course": "25ADT31 & FOUNDATION OF DATA SCIENCE AND ANALYTICS",
+    "class_name": "II B.Tech - AI&DS",
+    "date": "05.03.2026",
+    "time": "10.30 am - 12.30 pm",
+    "hod_status": "Waiting for approval"
+  },
+  "parts": [
+    {
+      "name": "A",
+      "num_questions": 12,
+      "marks_each": 2,
+      "either_or": false,
+      "co_plan": {
+        "CO1": 6,
+        "CO2": 6
+      },
+      "questions": [
+        {
+          "text": "Define data science and its need."
+        },
+        {
+          "text": "List any five applications of data science."
+        },
+        {
+          "text": "State the purpose of setting a research goal in the data science process."
+        },
+        {
+          "text": "Illustrate a data transformation for a simple example."
+        },
+        {
+          "text": "Explain the concept of handling missing values with a suitable example."
+        },
+        {
+          "text": "Explain exploratory data analysis and its purpose."
+        },
+        {
+          "text": "Name the Python modules used in the data science process with their purpose."
+        },
+        {
+          "text": "Describe the purpose of data modeling in the data science process."
+        },
+        {
+          "text": "Explain the relation between probability and statistics."
+        },
+        {
+          "text": "Differentiate between descriptive and inferential statistics."
+        },
+        {
+          "text": "Distinguish between null hypothesis and alternative hypothesis with examples."
+        },
+        {
+          "text": "Calculate the standard error of the mean for the following dataset: 12, 14, 16, 18."
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "num_questions": 3,
+      "marks_each": 12,
+      "either_or": true,
+      "co_plan": {
+        "CO1": 1,
+        "CO2": 1,
+        "CO3": 1
+      },
+      "questions": [
+        {
+          "a": {
+            "text": "Explain the stages of the data science process with a neat diagram."
+          },
+          "b": {
+            "text": "Describe the steps involved in the data preparation phase and compare cleaning with transformation."
+          }
+        },
+        {
+          "a": {
+            "text": "Apply min-max normalization and z-score standardization to the data 10, 20, 30, 40, 50 and interpret the results."
+          },
+          "b": {
+            "parts": [
+              {
+                "text": "Compute the mean and variance of the sample 10, 12, 14, 16.",
+                "marks": 6
+              },
+              {
+                "text": "Analyze the effect of an outlier on the mean and the median of the same sample.",
+                "marks": 6
+              }
+            ]
+          }
+        },
+        {
+          "a": {
+            "text": "Evaluate the suitability of random sampling versus stratified sampling for a student survey and justify your answer."
+          },
+          "b": {
+            "text": "Design an end-to-end data science workflow to predict student performance from academic data."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "paper_type": "SEM",
+  "header": {
+    "college": "VELALAR COLLEGE OF ENGINEERING AND TECHNOLOGY",
+    "affiliation": "(An Autonomous Institution, Affiliated to Anna University, Chennai)",
+    "exam_title": "Semester Examinations",
+    "qp_code": "25ADT31-S1",
+    "exam_year": "NOV/DEC 2026",
+    "regulations": "2022",
+    "programme": "B.Tech - AI&DS",
+    "semester": "3",
+    "max_marks": "100",
+    "duration": "3 Hrs",
+    "course": "25ADT31 & FOUNDATION OF DATA SCIENCE AND ANALYTICS",
+    "class_name": "II B.Tech - AI&DS",
+    "date": "",
+    "time": "",
+    "hod_status": "Waiting for approval"
+  },
+  "parts": [
+    {
+      "name": "A",
+      "num_questions": 10,
+      "marks_each": 2,
+      "either_or": false,
+      "co_plan": {
+        "CO1": 2,
+        "CO2": 2,
+        "CO3": 2,
+        "CO4": 2,
+        "CO5": 2
+      },
+      "questions": []
+    },
+    {
+      "name": "B",
+      "num_questions": 5,
+      "marks_each": 13,
+      "either_or": true,
+      "co_plan": {
+        "CO1": 1,
+        "CO2": 1,
+        "CO3": 1,
+        "CO4": 1,
+        "CO5": 1
+      },
+      "questions": []
+    },
+    {
+      "name": "C",
+      "num_questions": 1,
+      "marks_each": 15,
+      "either_or": true,
+      "co_plan": {
+        "CO5": 1
+      },
+      "questions": []
+    }
+  ]
+}
