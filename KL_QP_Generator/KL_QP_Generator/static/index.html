@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KL Question Paper Generator</title>
+<style>
+  :root { --ink:#1b1f24; --mute:#5b6570; --line:#d8dde3; --bg:#f5f6f8; --card:#fff; --accent:#1f4fd8; --warn:#b45309; --warnbg:#fef3c7; --ok:#166534; }
+  * { box-sizing: border-box; }
+  body { margin:0; font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:var(--ink); background:var(--bg); }
+  header { background:#fff; border-bottom:1px solid var(--line); padding:12px 20px; display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+  header h1 { font-size:18px; margin:0; }
+  nav button { border:0; background:none; font:inherit; padding:8px 12px; cursor:pointer; color:var(--mute); border-bottom:2px solid transparent; }
+  nav button.on { color:var(--accent); border-color:var(--accent); font-weight:600; }
+  main { max-width:1000px; margin:0 auto; padding:16px; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:16px; margin-bottom:16px; }
+  .card h2 { font-size:16px; margin:0 0 4px; }
+  .hint { color:var(--mute); font-size:13px; margin:0 0 12px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:10px 14px; }
+  label { display:block; font-size:12px; color:var(--mute); margin-bottom:3px; }
+  input[type=text], input[type=number], select, textarea { width:100%; font:inherit; padding:7px 9px; border:1px solid var(--line); border-radius:6px; background:#fff; color:var(--ink); }
+  textarea { resize:vertical; min-height:56px; }
+  button.btn { font:inherit; padding:8px 14px; border-radius:6px; border:1px solid var(--accent); background:var(--accent); color:#fff; cursor:pointer; }
+  button.btn.alt { background:#fff; color:var(--accent); }
+  button.small { font:inherit; font-size:12px; padding:3px 8px; border:1px solid var(--line); background:#fff; border-radius:5px; cursor:pointer; color:var(--mute); }
+  .types label { display:inline-flex; gap:6px; align-items:center; margin-right:18px; font-size:15px; color:var(--ink); }
+  .part { border:1px solid var(--line); border-radius:8px; padding:12px; margin-bottom:10px; }
+  .part .row { display:flex; gap:10px; flex-wrap:wrap; align-items:flex-end; }
+  .part .row > div { width:130px; }
+  .coplan { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; align-items:center; }
+  .coitem { display:flex; gap:4px; align-items:center; border:1px solid var(--line); border-radius:6px; padding:3px 6px; }
+  .coitem input { width:60px; padding:3px 5px; } .coitem input.n { width:48px; }
+  .slot { border-top:1px dashed var(--line); padding:10px 0; }
+  .slot .lab { font-weight:600; font-size:13px; margin-bottom:5px; }
+  .slot .lab span { color:var(--mute); font-weight:400; }
+  .meta { display:flex; gap:8px; align-items:center; margin-top:5px; flex-wrap:wrap; font-size:13px; }
+  .meta select { width:auto; padding:3px 6px; }
+  .badge { font-weight:700; padding:2px 8px; border-radius:10px; background:#e8eefc; color:var(--accent); min-width:34px; text-align:center; }
+  .badge.staff { background:#dcfce7; color:var(--ok); }
+  .badge.none { background:#eee; color:var(--mute); }
+  .rev { background:var(--warnbg); color:var(--warn); border-radius:6px; padding:2px 8px; font-size:12px; }
+  .warn { background:var(--warnbg); color:var(--warn); border-radius:6px; padding:8px 12px; margin:4px 0; font-size:13px; }
+  .okmsg { color:var(--ok); font-size:13px; }
+  table.t { border-collapse:collapse; width:100%; font-size:14px; }
+  table.t th, table.t td { border:1px solid var(--line); padding:6px 8px; text-align:left; vertical-align:top; }
+  table.t th { background:#f0f2f5; }
+  iframe { width:100%; height:640px; border:1px solid var(--line); border-radius:6px; margin-top:12px; background:#fff; }
+  .bars { display:flex; flex-direction:column; gap:4px; max-width:420px; }
+  .bar { display:flex; align-items:center; gap:8px; font-size:13px; } .bar i { display:block; height:10px; background:var(--accent); border-radius:3px; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>KL Question Paper Generator</h1>
+  <nav>
+    <button id="navPaper" class="on">Paper generator</button>
+    <button id="navQuick">Quick KL predictor</button>
+  </nav>
+</header>
+<main>
+
+<section id="tabPaper">
+  <div class="card">
+    <h2>1 &middot; Question paper type</h2>
+    <p class="hint">Choose the type; the framework below changes with it. (Changing the type resets the form.)</p>
+    <div class="types">
+      <label><input type="radio" name="ptype" value="CAT" checked> CAT question paper (QP set)</label>
+      <label><input type="radio" name="ptype" value="SEM"> Semester question paper (QP code)</label>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>2 &middot; Framework details</h2>
+    <p class="hint">Register number boxes and the knowledge-level legend are added automatically.</p>
+    <div class="grid" id="headerForm"></div>
+  </div>
+
+  <div class="card">
+    <h2>3 &middot; Parts, marks and course outcomes</h2>
+    <p class="hint">Faculty chooses the COs and how many questions each CO gets, in sequence (e.g. CO1&times;5 then CO2&times;4 gives Q1-5 &rarr; CO1, Q6-9 &rarr; CO2). For either-or parts, give one CO per question number; (a) and (b) share it.</p>
+    <div id="parts"></div>
+    <button class="btn alt" id="addPart">+ Add part</button>
+  </div>
+
+  <div class="card">
+    <h2>4 &middot; Questions &rarr; Knowledge Levels</h2>
+    <p class="hint">Paste your questions, one per line, in paper order (Part A Q1, Q2 ... then Part B 13(a), 13(b), 14(a) ...) or type them in the boxes. The level is predicted from the question text; use the drop-down to override it. Yellow notes mean "please double-check".</p>
+    <label for="bulk">Paste all questions (one per line)</label>
+    <textarea id="bulk" rows="5" placeholder="Define data science and its need.&#10;List any five applications of data science.&#10;..."></textarea>
+    <p><button class="btn alt" id="fillBulk">Fill the boxes in order</button></p>
+    <div id="slots"></div>
+  </div>
+
+  <div class="card">
+    <h2>5 &middot; Generate PDF</h2>
+    <div id="warnings"></div>
+    <div id="dist"></div>
+    <p style="margin-top:12px">
+      <button class="btn" id="btnPreview">Preview paper</button>
+      <button class="btn alt" id="btnPaper">Download question paper PDF</button>
+      <button class="btn alt" id="btnBlue">Download faculty blueprint PDF</button>
+      <button class="btn alt" id="btnFeed">Save my KL overrides as training data</button>
+    </p>
+    <div id="status" class="hint"></div>
+    <iframe id="preview" class="hidden" title="preview"></iframe>
+  </div>
+</section>
+
+<section id="tabQuick" class="hidden">
+  <div class="card">
+    <h2>Quick Knowledge-Level predictor</h2>
+    <p class="hint">Paste questions, one per line. Only the KL is predicted; the reasons are shown so you can judge them.</p>
+    <textarea id="quickIn" rows="8" placeholder="Explain how to apply Dijkstra's algorithm.&#10;Compare two algorithms and evaluate their efficiency."></textarea>
+    <p><button class="btn" id="quickGo">Predict</button></p>
+    <div id="quickOut"></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const KL = ["K1","K2","K3","K4","K5","K6"];
+const NAMES = {K1:"Remembering",K2:"Understanding",K3:"Applying",K4:"Analysing",K5:"Evaluating",K6:"Creating"};
+const HEADER_FIELDS = {
+  CAT: [["exam_title","Test name"],["qp_set","QP set"],["regulations","Regulations"],["programme","Programme"],["semester","Semester"],
+        ["max_marks","Max. marks"],["duration","Duration"],["course","Course code & title"],["class_name","Class"],["date","Date"],["time","Time"],["hod_status","HoD status line"]],
+  SEM: [["exam_title","Examination"],["exam_year","Examination year (e.g. NOV/DEC 2026)"],["qp_code","QP code"],["regulations","Regulations"],
+        ["programme","Programme"],["semester","Semester"],["max_marks","Max. marks"],["duration","Duration"],["course","Course code & title"],
+        ["class_name","Class"],["date","Date"],["time","Time"],["hod_status","HoD status line"]],
+};
+const $ = s => document.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) { if (k === "class") e.className = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); }
+  kids.flat().forEach(c => e.append(c.nodeType ? c : document.createTextNode(c)));
+  return e;
+};
+
+let presets = null, spec = null, built = null, timer = null, manualMax = false;
+
+/* ---------- tabs ---------- */
+$("#navPaper").onclick = () => { $("#tabPaper").classList.remove("hidden"); $("#tabQuick").classList.add("hidden"); $("#navPaper").classList.add("on"); $("#navQuick").classList.remove("on"); };
+$("#navQuick").onclick = () => { $("#tabQuick").classList.remove("hidden"); $("#tabPaper").classList.add("hidden"); $("#navQuick").classList.add("on"); $("#navPaper").classList.remove("on"); };
+
+/* ---------- spec helpers ---------- */
+function emptyOpt() { return { parts: [{ text: "", marks: 0, kl: "" }] }; }
+function ensureSlots(p) {
+  while (p.questions.length < p.num_questions) p.questions.push(p.either_or ? { a: emptyOpt(), b: emptyOpt() } : emptyOpt());
+  p.questions.length = p.num_questions;
+  // convert between either-or and plain shapes if the checkbox was toggled
+  p.questions = p.questions.map(q => p.either_or ? (q.a ? q : { a: q, b: emptyOpt() }) : (q.a ? q.a : q));
+}
+function options(q) { return q.a ? [q.a, q.b] : [q]; }
+function syncMarks() {
+  spec.parts.forEach(p => p.questions.forEach(q => options(q).forEach(o => {
+    if (o.parts.length === 1) o.parts[0].marks = p.marks_each;
+    else if (o.parts.length === 2) o.parts[1].marks = Math.max(0, p.marks_each - o.parts[0].marks);
+  })));
+}
+function totalMarks() { return spec.parts.reduce((s, p) => s + p.num_questions * p.marks_each, 0); }
+function wireSpec() {   // what the server expects
+  syncMarks();
+  const out = JSON.parse(JSON.stringify(spec));
+  out.parts.forEach(p => {
+    const plan = {}; p.co_plan.forEach(([co, n]) => { if (co.trim()) plan[co.trim()] = (plan[co.trim()] || 0) + (parseInt(n) || 0); });
+    p.co_plan = plan;
+  });
+  return out;
+}
+
+/* ---------- step 1/2 ---------- */
+function choose(type) {
+  spec = JSON.parse(JSON.stringify(presets[type]));
+  spec.parts.forEach(p => { p.co_plan = Object.entries(p.co_plan); p.questions = []; ensureSlots(p); });
+  manualMax = false; built = null;
+  renderHeader(); renderParts(); renderSlots(); schedule();
+}
+document.querySelectorAll("input[name=ptype]").forEach(r => r.onchange = e => { if (confirm("Changing the type resets the form. Continue?")) choose(e.target.value); else document.querySelector(`input[name=ptype][value=${spec.paper_type}]`).checked = true; });
+
+function renderHeader() {
+  const box = $("#headerForm"); box.replaceChildren();
+  HEADER_FIELDS[spec.paper_type].forEach(([key, label]) => {
+    const inp = el("input", { type: "text", value: spec.header[key] ?? "" });
+    inp.oninput = () => { spec.header[key] = inp.value; if (key === "max_marks") manualMax = true; schedule(); };
+    inp.dataset.key = key;
+    box.append(el("div", {}, el("label", {}, label), inp));
+  });
+}
+function refreshMax() {
+  if (manualMax) return;
+  spec.header.max_marks = String(totalMarks());
+  const inp = document.querySelector('#headerForm input[data-key="max_marks"]'); if (inp) inp.value = spec.header.max_marks;
+}
+
+/* ---------- step 3 ---------- */
+function renderParts() {
+  const box = $("#parts"); box.replaceChildren();
+  spec.parts.forEach((p, pi) => {
+    const num = (key, label, min = 1) => {
+      const i = el("input", { type: "number", min: String(min), value: String(p[key]) });
+      i.onchange = () => { p[key] = Math.max(min, parseInt(i.value) || min); ensureSlots(p); refreshMax(); renderParts(); renderSlots(); schedule(); };
+      return el("div", {}, el("label", {}, label), i);
+    };
+    const name = el("input", { type: "text", value: p.name }); name.oninput = () => { p.name = name.value; schedule(); };
+    const either = el("input", { type: "checkbox" }); either.checked = !!p.either_or;
+    either.onchange = () => { p.either_or = either.checked; ensureSlots(p); renderParts(); renderSlots(); schedule(); };
+    const del = el("button", { class: "small", onclick: () => { spec.parts.splice(pi, 1); refreshMax(); renderParts(); renderSlots(); schedule(); } }, "Remove part");
+
+    const planTotal = p.co_plan.reduce((s, [, n]) => s + (parseInt(n) || 0), 0);
+    const plan = el("div", { class: "coplan" }, el("span", { class: "hint", style: "margin:0" }, p.either_or ? "CO per question number:" : "COs in sequence:"));
+    p.co_plan.forEach(([co, n], ci) => {
+      const a = el("input", { type: "text", value: co }); a.oninput = () => { p.co_plan[ci][0] = a.value; schedule(); };
+      const b = el("input", { type: "number", class: "n", min: "0", value: String(n) }); b.onchange = () => { p.co_plan[ci][1] = parseInt(b.value) || 0; renderParts(); renderSlots(); schedule(); };
+      const x = el("button", { class: "small", onclick: () => { p.co_plan.splice(ci, 1); renderParts(); renderSlots(); schedule(); } }, "x");
+      plan.append(el("span", { class: "coitem" }, a, "×", b, x));
+    });
+    plan.append(el("button", { class: "small", onclick: () => { p.co_plan.push(["CO" + (p.co_plan.length + 1), 1]); renderParts(); renderSlots(); schedule(); } }, "+ CO"));
+    plan.append(el("span", { class: planTotal === p.num_questions ? "okmsg" : "rev" }, `${planTotal} of ${p.num_questions} questions assigned`));
+
+    box.append(el("div", { class: "part" },
+      el("div", { class: "row" }, el("div", {}, el("label", {}, "Part name"), name), num("num_questions", "No. of questions"), num("marks_each", "Marks each"),
+        el("div", {}, el("label", {}, "Either (a) or (b)"), either), del),
+      plan));
+  });
+}
+$("#addPart").onclick = () => {
+  const p = { name: String.fromCharCode(65 + spec.parts.length), num_questions: 1, marks_each: 10, either_or: true, co_plan: [["CO1", 1]], questions: [] };
+  ensureSlots(p); spec.parts.push(p); refreshMax(); renderParts(); renderSlots(); schedule();
+};
+
+/* ---------- step 4 ---------- */
+function renderSlots() {
+  const box = $("#slots"); box.replaceChildren();
+  spec.parts.forEach((p, pi) => {
+    box.append(el("h3", { style: "margin:14px 0 2px;font-size:15px" }, `Part ${p.name} – ${p.num_questions} × ${p.marks_each} = ${p.num_questions * p.marks_each} marks`));
+    let no = 1; for (let i = 0; i < pi; i++) no += spec.parts[i].num_questions;
+    p.questions.forEach((q, qi) => {
+      const labelFor = (oi) => `Q${no + qi}` + (p.either_or ? ` (${oi === 0 ? "a" : "b"})` : "");
+      const wrap = el("div", { class: "slot" });
+      options(q).forEach((o, oi) => {
+        const h = el("div", { class: "lab" }, labelFor(oi), el("span", { id: `co-${pi}-${qi}`, style: oi === 0 ? "" : "display:none" }, ""));
+        wrap.append(h);
+        o.parts.forEach((pt, k) => {
+          const ta = el("textarea", { rows: "2", placeholder: o.parts.length > 1 ? `(${k ? "ii" : "i"}) sub-question` : "Type or paste the question" });
+          ta.value = pt.text;
+          ta.oninput = () => { pt.text = ta.value; schedule(); };
+          const badge = el("span", { class: "badge none", id: `b-${pi}-${qi}-${oi}-${k}` }, "–");
+          const note = el("span", { id: `n-${pi}-${qi}-${oi}-${k}` });
+          const sel = el("select", {}, el("option", { value: "" }, "Auto"), ...KL.map(l => el("option", { value: l }, `${l} ${NAMES[l]}`)));
+          sel.value = pt.kl; sel.onchange = () => { pt.kl = sel.value; schedule(); };
+          const meta = el("div", { class: "meta" }, badge, el("label", { style: "margin:0" }, "override:"), sel, note);
+          if (o.parts.length > 1 && k === 0) {
+            const m = el("input", { type: "number", min: "1", value: String(pt.marks), style: "width:70px" });
+            m.onchange = () => { pt.marks = Math.min(p.marks_each - 1, Math.max(1, parseInt(m.value) || 1)); renderSlots(); schedule(); };
+            meta.append(el("label", { style: "margin:0" }, "marks:"), m);
+          }
+          if (o.parts.length > 1 && k === 1) meta.append(el("span", { class: "hint", style: "margin:0" }, `marks: ${pt.marks}`));
+          wrap.append(ta, meta);
+        });
+        const sp = el("button", { class: "small", style: "margin-top:6px", onclick: () => {
+          if (o.parts.length === 1) { const h2 = Math.floor(p.marks_each / 2); o.parts[0].marks = h2; o.parts.push({ text: "", marks: p.marks_each - h2, kl: "" }); }
+          else o.parts.splice(1);
+          renderSlots(); schedule();
+        } }, o.parts.length === 1 ? "Split marks into (i) + (ii)" : "Merge back to one question");
+        if (p.marks_each >= 4) wrap.append(sp);
+      });
+      box.append(wrap);
+    });
+  });
+}
+
+$("#fillBulk").onclick = () => {
+  const lines = $("#bulk").value.split("\n").map(l => l.replace(/^\s*(?:\(?[a-z0-9]{1,3}[\).:]\s+)+/i, "").trim()).filter(Boolean);
+  let i = 0;
+  spec.parts.forEach(p => p.questions.forEach(q => options(q).forEach(o => { if (i < lines.length) { o.parts[0].text = lines[i++]; o.parts[0].kl = ""; } })));
+  renderSlots(); schedule();
+  $("#status").textContent = `${i} question(s) placed. ${lines.length > i ? (lines.length - i) + " extra line(s) did not fit - add questions in step 3." : ""}`;
+};
+
+/* ---------- live build ---------- */
+function schedule() { clearTimeout(timer); timer = setTimeout(build, 350); }
+async function post(url, body) {
+  const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+  if (!r.ok) throw new Error(url + " -> " + r.status);
+  return r;
+}
+async function build() {
+  refreshMax();
+  try { built = await (await post("/api/build", { spec: wireSpec() })).json(); } catch (e) { $("#status").textContent = "Server error: " + e.message; return; }
+  built.spec.parts.forEach((bp, pi) => bp.items.forEach((it, qi) => {
+    const co = document.getElementById(`co-${pi}-${qi}`); if (co) co.textContent = it.co ? `  ·  ${it.co}` : "  ·  (no CO)";
+    it.options.forEach((bo, oi) => bo.parts.forEach((bpt, k) => {
+      const b = document.getElementById(`b-${pi}-${qi}-${oi}-${k}`), n = document.getElementById(`n-${pi}-${qi}-${oi}-${k}`);
+      if (!b) return;
+      b.textContent = bpt.kl || "–"; b.className = "badge " + (!bpt.kl ? "none" : bpt.kl_source === "staff" ? "staff" : "");
+      n.replaceChildren();
+      if (bpt.kl && bpt.kl_source === "model") n.append(document.createTextNode(`${NAMES[bpt.kl]} · ${Math.round(bpt.confidence * 100)}% sure `));
+      if (bpt.kl && bpt.kl_source === "staff") n.append(document.createTextNode(`${NAMES[bpt.kl]} · set by staff`));
+      if (bpt.review && bpt.review.length) n.append(el("span", { class: "rev" }, "check: " + bpt.review.join("; ")));
+    }));
+  }));
+  const w = $("#warnings"); w.replaceChildren();
+  if (built.warnings.length) built.warnings.slice(0, 8).forEach(t => w.append(el("div", { class: "warn" }, t)));
+  if (built.warnings.length > 8) w.append(el("div", { class: "warn" }, `... and ${built.warnings.length - 8} more`));
+  if (!built.warnings.length) w.append(el("div", { class: "okmsg" }, "Framework is complete and the marks add up."));
+  const d = $("#dist"); d.replaceChildren();
+  const tot = totalMarks() || 1;
+  const bars = el("div", { class: "bars" }, el("strong", {}, "Knowledge-level distribution (marks)"));
+  KL.forEach(k => { const v = built.kl_distribution[k] || 0; bars.append(el("div", { class: "bar" }, el("span", { style: "width:26px" }, k), el("i", { style: `width:${Math.round(260 * v / tot)}px` }), `${v} (${Math.round(100 * v / tot)}%)`)); });
+  d.append(bars);
+}
+
+/* ---------- step 5 ---------- */
+async function getPdf(kind) { const r = await post("/api/pdf", { spec: wireSpec(), kind }); return await r.blob(); }
+function download(blob, name) { const a = el("a", { href: URL.createObjectURL(blob), download: name }); document.body.append(a); a.click(); a.remove(); }
+$("#btnPreview").onclick = async () => { $("#status").textContent = "Rendering..."; const b = await getPdf("paper"); const f = $("#preview"); f.classList.remove("hidden"); f.src = URL.createObjectURL(b); $("#status").textContent = ""; };
+$("#btnPaper").onclick = async () => download(await getPdf("paper"), "question_paper.pdf");
+$("#btnBlue").onclick = async () => download(await getPdf("blueprint"), "faculty_blueprint.pdf");
+$("#btnFeed").onclick = async () => {
+  const items = [];
+  spec.parts.forEach(p => p.questions.forEach(q => options(q).forEach(o => o.parts.forEach(pt => { if (pt.kl && pt.text.trim()) items.push({ question: pt.text, kl: pt.kl }); }))));
+  if (!items.length) { $("#status").textContent = "No overrides to save - pick a level in a drop-down first."; return; }
+  const r = await (await post("/api/feedback", { items })).json();
+  $("#status").textContent = `Saved ${r.saved} staff-labelled question(s) to data/feedback.csv. The predictor was retrained with them.`;
+};
+
+/* ---------- quick predictor ---------- */
+$("#quickGo").onclick = async () => {
+  const qs = $("#quickIn").value.split("\n").map(s => s.trim()).filter(Boolean);
+  const out = $("#quickOut"); out.replaceChildren();
+  if (!qs.length) return;
+  const res = await (await post("/api/predict", { questions: qs })).json();
+  const t = el("table", { class: "t" }, el("tr", {}, ...["Question", "KL", "Confidence", "Why / check"].map(h => el("th", {}, h))));
+  res.forEach(r => t.append(el("tr", {},
+    el("td", {}, r.question), el("td", {}, el("span", { class: "badge" }, r.kl), " " + r.name), el("td", {}, Math.round(r.confidence * 100) + "%"),
+    el("td", {}, r.review ? el("div", { class: "rev" }, r.reasons.join("; ")) : "", ...r.evidence.map(e => el("div", { class: "hint", style: "margin:2px 0" }, e))))));
+  out.append(t);
+};
+
+/* ---------- start ---------- */
+(async () => { presets = await (await fetch("/api/presets")).json(); choose("CAT"); })();
+</script>
+</body>
+</html>
