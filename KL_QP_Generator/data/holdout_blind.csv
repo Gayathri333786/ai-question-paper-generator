@@ -1,0 +1,32 @@
+question,kl
+"State Ohm's law.",K1
+"List the layers of the TCP/IP model.",K1
+"What is normalization in DBMS?",K1
+"Define a deadlock.",K1
+"Give the full form of RAM.",K1
+"Explain the concept of virtual memory.",K2
+"Describe the working of the TCP three-way handshake.",K2
+"Discuss the ACID properties of a transaction.",K2
+"Differentiate between primary and secondary memory.",K2
+"Summarize the features of object oriented programming.",K2
+"How does a compiler differ from an interpreter?",K2
+"Illustrate the concept of recursion with an example.",K2
+"Calculate the average waiting time for the processes P1, P2, P3 using FCFS scheduling given burst times 5, 8, 12.",K3
+"Solve the following system of linear equations using Gaussian elimination.",K3
+"Write an SQL query to find the second highest salary from the employee table.",K3
+"Convert the binary number 101101 to decimal.",K3
+"Draw the truth table for the expression A AND (B OR C).",K3
+"Use Kruskal's algorithm to find the minimum spanning tree of the given graph.",K3
+"Compare paging and segmentation.",K4
+"Analyze the time complexity of the given recursive function.",K4
+"Examine the causes of deadlock in a multi-process system.",K4
+"Differentiate between TCP and UDP by analyzing reliability and overhead.",K4
+"Evaluate the suitability of round robin scheduling for a real-time system.",K5
+"Justify the need for normalization in relational databases.",K5
+"Critique the use of global variables in large programs.",K5
+"Assess which sorting algorithm is best for nearly sorted data.",K5
+"Recommend a suitable data structure for implementing an undo feature and justify your choice.",K5
+"Design a schema for an online examination system.",K6
+"Develop a mobile app idea to help farmers sell crops directly.",K6
+"Propose a caching strategy to reduce the load on a web server.",K6
+"Formulate an algorithm to schedule exams without clashes.",K6
