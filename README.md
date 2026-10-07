@@ -17,7 +17,7 @@ python evaluate.py --test my_staff_labelled.csv                       # YOUR lab
 python tests/test_core.py
 ```
 
-## Workflow (your algorithm)
+## Workflow (algorithm)
 1. Pick paper type: CAT (QP set) or Semester (QP code + exam year).
 2. Fill the framework header (college, programme, semester, max marks, duration, regulation, course, date...).
 3. Choose parts, marks and COs. Faculty gives COs and counts, e.g. CO1x5, CO2x4 -> Q1-5 CO1, Q6-9 CO2.
